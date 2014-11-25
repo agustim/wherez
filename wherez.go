@@ -37,9 +37,9 @@ import (
 // If appPort is a positive number, wherez will advertise that our main application
 // is on port appPort of the current host. If it's negative, it doesn't
 // announce itself as a peer.
-func FindAuthenticatedPeers(port, appPort, minPeers int, passphrase []byte) chan Peer {
+func FindAuthenticatedPeers(port, appPort, minPeers int, passphrase []byte, firstPeer string) chan Peer {
 	c := make(chan Peer)
-	go findAuthenticatedPeers(port, appPort, minPeers, passphrase, c)
+	go findAuthenticatedPeers(port, appPort, minPeers, passphrase, firstPeer, c)
 	return c
 }
 
