@@ -51,7 +51,7 @@ func (p Peer) String() string {
 	return fmt.Sprintf("%v", p.Addr)
 }
 
-func findAuthenticatedPeers(port, appPort, minPeers int, passphrase []byte, c chan Peer) {
+func findAuthenticatedPeers(port, appPort, minPeers int, passphrase []byte, firstPeer string, c chan Peer) {
 	defer close(c)
 	ih, err := infoHash(passphrase)
 	if err != nil {
@@ -72,7 +72,7 @@ func findAuthenticatedPeers(port, appPort, minPeers int, passphrase []byte, c ch
 		log.Println("Could not create the DHT node:", err)
 		return
 	}
-	d.AddNode("213.239.195.138:40000")
+	d.AddNode(firstPeer)
 	go d.DoDHT()
 	// Sends authenticated peers to channel c.
 	go obtainPeers(d, passphrase, c)
