@@ -21,7 +21,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nictuku/dht"
+	"github.com/agustim/dht"
 )
 
 // FindAuthenticatedPeers uses the BitTorrent DHT network to find sibling
